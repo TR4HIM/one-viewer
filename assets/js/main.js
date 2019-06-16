@@ -61,7 +61,6 @@
             // j : Previous
             // k : Next
             keyNavigation: function (event) {
-
                 
                 //check if Keycode is for J
                 if (event.keyCode == 74) {
@@ -77,6 +76,27 @@
                         this.showPost(this.nextPost);
                 }
             },
+
+            //Function to handle swipe on touch devices
+            swipeHandler() {
+                let _self = this;
+
+                return function (direction, event) {
+
+                    if (direction == 'left') {
+                        console.log('Previous Swipe');
+                        if (_self.previousPost != null)
+                            _self.showPost(_self.previousPost);
+                    }
+
+                    if (direction == 'right') {
+                        console.log('Next Swipe');
+                        if (_self.nextPost != null)
+                            _self.showPost(_self.nextPost);
+                    }
+
+                }
+            }
         },
 
         mounted() {

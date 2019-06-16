@@ -14,7 +14,7 @@
         <div class = "row justify-content-md-center">
             <div class="col-md-8">
 
-                <div class="card mb-3">
+                <div class="card mb-3" v-touch:swipe="swipeHandler()">
                     <!-- Show image if thumbnail exist -->
                     <div    class="post-img" 
                             v-if="results.thumbnail" 

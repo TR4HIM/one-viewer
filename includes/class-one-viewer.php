@@ -52,6 +52,8 @@ class OneViewerCore {
 		wp_enqueue_script( $this->plugin_name.'-cdn-vue', 'https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js',[],'2.6.10' );
 		// Import Axios to handle ajax requests
 		wp_enqueue_script( $this->plugin_name.'-cdn-axios', 'https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js',[],'0.19.0' );
+		// Import Vue Touch events
+		wp_enqueue_script( $this->plugin_name.'-cdn-vue-touch', 'https://cdn.jsdelivr.net/npm/vue2-touch-events@2.0.0/index.min.js',[],'2.0.0' );
 		//OneViewer VueJs Application
 		wp_enqueue_script($this->plugin_name.'-main', plugins_url( '../assets/js/main.js', __FILE__ ), [], $this->version , true);
 
