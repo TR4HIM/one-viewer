@@ -24,6 +24,20 @@ define( 'ONEVIEW_PLUGIN', dirname( __FILE__ ) );
  */
 function activate_one_viewer() {
     add_option('oneviewer_categories',1);
+
+    $checkViewerPage = get_page_by_path('viewer');
+
+    if(empty($checkViewerPage)){
+        $post_data = array(
+            'post_title'    => wp_strip_all_tags( "Viewer" ),
+            'post_content'  => '',
+            'post_status'   => 'publish',
+            'post_type'     => 'page',
+            'post_author'   => get_current_user_id(),
+        );
+        wp_insert_post( $post_data);
+    }
+ 
 }
 
 /**
@@ -65,6 +79,7 @@ function oneviewer_page_template( $template ) {
 */
 function wp_one_viewer_run () {
 
+    
     $urlsInit = new OneViewerEndPoint();
     $urlsInit->Register_Endpoint();
 
