@@ -47,12 +47,16 @@
                                 <!-- ADD TRANSLATE FUNCTION Later-->
                                 <button type="button" class="btn btn-info" 
                                     v-if="results.prevPostId !== null"
-                                    @click="showPost(results.prevPostId)">Previous</button>
+                                    @click="showPost(results.prevPostId)">
+                                    <?= __('Previous') ?>
+                                </button>
                             </div>
                             <div class="col text-right">
                                 <button type="button" class="btn btn-primary" 
                                     v-if="results.nextPostId !== null"
-                                    @click="showPost(results.nextPostId)">Next</button>
+                                    @click="showPost(results.nextPostId)">
+                                    <?= __('Next') ?>
+                                </button>
                             </div>
                         </div>
                     </div>
