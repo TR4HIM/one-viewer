@@ -45,7 +45,20 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-one-viewer-endpoints.php';
 
 require plugin_dir_path( __FILE__ ) . 'includes/class-one-viewer.php';
 
- 
+
+
+//  Overwrite the default tempalte for /viewer page
+add_filter( 'template_include', 'oneviewer_page_template', 99 );
+
+function oneviewer_page_template( $template ) {
+    // Check if it's viewer page
+    if ( is_page('viewer')  ) {
+        $newtemplate = dirname( __FILE__ ) . '/templates/page-one-viewer.php';
+        return $newtemplate ;
+    }
+    return $template;
+
+}
 /* 
     One Viewer Run
 */

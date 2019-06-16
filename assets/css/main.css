@@ -1,0 +1,12 @@
+.viewer-container {
+    padding:15px 0;
+}
+.post-img {
+    background-size:cover;
+    background-position:top center;
+    padding-top:30%;
+    padding-bottom:30%;
+}
+.card-body ul , .card-body ol {
+    list-style-position: inside;
+}

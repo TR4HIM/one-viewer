@@ -36,8 +36,9 @@ class OneViewerCore {
 	 * Register all of the hooks.
 	 */
     public function enqueue_styles() {
-
+		//Import bootstrap
 		wp_enqueue_style( $this->plugin_name.'-cdn-vue','https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', array(), $this->version, 'all' );
+		//OneViewer styles
 		wp_enqueue_style( $this->plugin_name.'-main-styles',plugins_url( '../assets/css/main.css', __FILE__ ), array(), $this->version, 'all' );
 
     }
@@ -46,6 +47,11 @@ class OneViewerCore {
 
 		// Import Wordpress Jquery
 		wp_enqueue_script('jquery');
+		//Import VueJs CDN
+		wp_enqueue_script( $this->plugin_name.'-cdn-vue', 'https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js',[],'2.6.10' );
+		// Import Axios to handle ajax requests
+		wp_enqueue_script( $this->plugin_name.'-cdn-axios', 'https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js',[],'0.19.0' );
+		//OneViewer VueJs Application
 		wp_enqueue_script($this->plugin_name.'-main', plugins_url( '../assets/js/main.js', __FILE__ ), [], $this->version , true);
 
     }

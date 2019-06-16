@@ -93,9 +93,6 @@ class OneViewerEndPoint {
         $prev_post  = $prevPostQuery->post;
         wp_reset_postdata();
 
-        // $prev_post =  get_adjacent_post(true,'',true);
-        // $next_post =  get_adjacent_post(true,'',false);
-
         //Check if the post have image and append it to data object.
         if ( has_post_thumbnail( $latestPost->ID ) ) {
             $latestPost->thumbnail = get_the_post_thumbnail_url($latestPost->ID);
@@ -107,7 +104,7 @@ class OneViewerEndPoint {
         $latestPost->nextPostId = ($next_post != null ) ? $next_post->ID : null;
 
         wp_reset_postdata();
-        
+
         //Return Object data (json)
         return new WP_REST_Response($latestPost);
     }
@@ -152,11 +149,11 @@ class OneViewerEndPoint {
         // Add next id to Data Object
         $postObject->nextPostId = ($next_post != null ) ? $next_post->ID : null;
 
-        // return new WP_REST_Response($nextPostQuery);
         //Previous post arguments 
         $prevPostArgs = array(
             'date_query'     => array( 'before' => $postObject->post_date ),
         );
+
         //Merge default arguments and Previous post arguments to get the previous post in the same category as the current post.
         $prevPostQuery  = new WP_Query( array_merge($defaultArgs, $prevPostArgs) );
         $prev_post      = $prevPostQuery->post;
@@ -164,22 +161,8 @@ class OneViewerEndPoint {
 
         $postObject->prevPostId = ($prev_post != null ) ? $prev_post->ID : null;
 
-        // return new WP_REST_Response($prev_post);
         //Return Object data (json)
         return new WP_REST_Response($postObject);
-
-
-        // $prev_post =  get_adjacent_post(true,'',true);
-        // $next_post =  get_adjacent_post(true,'',false);
-
-        // $latestPost->prevPostId = (is_a( $prev_post, 'WP_Post' ) ? $prev_post->ID : null);
-        // $latestPost->nextPostId = (is_a( $next_post, 'WP_Post' ) ? $next_post->ID : null);
-
-
-
-        //add_post_meta( $latestPost->ID, "thumbnailUrl", $latestPostImage , TRUE );
-        //var_dump($latestPost);
-
     }
     
 }
