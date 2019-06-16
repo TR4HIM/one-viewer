@@ -15,7 +15,9 @@
             results             : [],
             nextPost            : null,
             previousPost        : null,
-            selectedCategories  : DEFAULT_CATEGORIES
+            selectedCategories  : DEFAULT_CATEGORIES,
+            disableNavigation   : false,
+            lockClick           : false,
         },
         
         // Application Methods
@@ -30,11 +32,20 @@
                     this.results        = response.data;
                     this.nextPost       = response.data.nextPostId;
                     this.previousPost   = response.data.prevPostId;
+                    // If it a single post hide navigation
+                    this.disableNavigation = (this.nextPost == null & this.previousPost == null) ? true : false;
                 });
             },
 
             //Get post by id with on click (next/previous buttons)
             showPost: function (id) {
+
+                // Check if a request already on proccess
+                if (this.lockClick)
+                    return;
+                //Disabled multiple click at once
+                this.lockClick = true;
+                
                 // OneViewer API to get the latest post by id
                 let PostByIdUrl = `${API_ENDPOINT}getpostbyid/${id}/category/${this.selectedCategories}`;
 
@@ -42,6 +53,7 @@
                     this.results        = response.data;
                     this.nextPost       = response.data.nextPostId;
                     this.previousPost   = response.data.prevPostId;
+                    this.lockClick      = false;
                 })
             },
 
@@ -49,6 +61,8 @@
             // j : Previous
             // k : Next
             keyNavigation: function (event) {
+
+                
                 //check if Keycode is for J
                 if (event.keyCode == 74) {
                     console.log('Previous');
@@ -68,12 +82,12 @@
         mounted() {
             //save this to use THIS in innerFunctions
             let _self = this;
+            
             //Bind keyup to application window
             window.addEventListener('keyup', function (ev) {
                 _self.keyNavigation(ev);
             });
 
-            console.log(this.selectedCategories);
             this.getLatestPost();
         }
     });
