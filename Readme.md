@@ -1,4 +1,4 @@
-# One Viewer: View Posts With VueJs.
+# One Viewer: Single Page Application To Show Posts With VueJs.
 
 One Viewer is a lightweight Wordpress plugin that pulls posts from Wordpress API filtered by category and shows posts in nice interface created with VueJs framework. 
 
@@ -16,13 +16,13 @@ One Viewer is a lightweight Wordpress plugin that pulls posts from Wordpress API
 * WordPress >= 4.9
 
 ## Installation
-1. Download plugin from the [Release](https://github.com/jquery/jquery) tab.
+1. Download plugin from the [Releases](https://github.com/TR4HIM/one-viewer/releases) tab.
 2. Install using the WordPress built-in Plugin installer, or Extract the zip file and drop the contents in the `wp-content/plugins/` directory of your WordPress installation.
 3. Activate the plugin through the `Plugins` menu in WordPress.
 4. Navigate to `Dashboard` ▸ `Settings` ▸ `OneViewer` and select your category.
 5. Navigate to https://www.YOURURL.com/viewer to see your posts.
 
-> This plugin will create a '/viewer' page, if you already have a page with the same name, you can't access your old page, but you will not lose any data.
+> This plugin will create a '/viewer' page, if you already have a page with the same name, you will not be able to access your old page, but **you will not lost** any data.
 > if you disabled the plugin the old page will work as usual.
 
 ## Developer information

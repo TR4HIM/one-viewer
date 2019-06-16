@@ -6,9 +6,10 @@
     Author: Soufiane Trahim
     Version: 1.0.0
     Author URI: https://github.com/TR4HIM
+    Requires at least: 4.9
 */
 
-
+if(!defined('ABSPATH')) {die('You are not allowed to call this page directly.');}
 
 /* Plugin Constans */
 
@@ -28,7 +29,7 @@ function activate_one_viewer() {
      *  Add option field to save selected categories
      */
     add_option('oneviewer_categories',1);
-    
+
     /**
      * Check if /viewer page already exist
      * 

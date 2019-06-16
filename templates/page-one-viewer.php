@@ -1,6 +1,6 @@
 <?php 
     /* Template Name: Viewer Template */ 
-    
+    if(!defined('ABSPATH')) {die('You are not allowed to call this page directly.');}
     get_header();
 
     //Get default Wordpress Api Url

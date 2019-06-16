@@ -10,6 +10,7 @@
  * @author     Soufiane <tr4him@gmail.com>
  */
 
+if(!defined('ABSPATH')) {die('You are not allowed to call this page directly.');}
 
 class OneViewerCore {
 
@@ -55,28 +56,30 @@ class OneViewerCore {
 		wp_enqueue_script($this->plugin_name.'-main', plugins_url( '../assets/js/main.js', __FILE__ ), [], $this->version , true);
 
     }
-    
+	
+	/**
+	 * Register front end hooks.
+	 */
 	private function define_front_hooks() {
 
         add_action( 'wp_enqueue_scripts',array( $this, 'enqueue_styles') );
         add_action( 'wp_enqueue_scripts',array( $this, 'enqueue_scripts') );
 	}
 
+	/**
+	 * Register all admin hooks.
+	 */
 	private function define_admin_hooks() {
-		add_action('admin_init', array( $this, 'sampleoptions_init_fn') );
 		add_action('admin_menu', array( $this, 'one_viewer_register_menu_settings'));
-		
-	}
-
-	// Register our settings. Add the settings section, and settings fields
-	public function sampleoptions_init_fn(){
 		
 	}
 
 	public function one_viewer_register_menu_settings(){
 		   add_options_page('One Viewer', 'One Viewer', 'manage_options','one-viewer-settings',array( $this, 'one_viewer_admin_template' ));
 	}
-
+	/**
+	 * Function to get all categories and convert it to HTML template
+	 */
 	public function AllCategoriesTemplate(){
 
 		$categories = get_categories();
@@ -95,16 +98,32 @@ class OneViewerCore {
 		return $selectHtml;
 
 	}
+
+	/**
+	 * Page settings template and logic
+	 */
 	public function one_viewer_admin_template(){
+		/**
+		 * Check if user clicked save on the settings page.
+		 */
 		if ( !empty($_POST)){
+
+			//Get selected categories.
 			$categories = $_POST['wp-newiewer-select'];
+
+			//Updated option field and save new categories.
 			update_option( 'oneviewer_categories', $categories);
+
+			//Create Message tempalte
 			$HTMLNotice = '<div id="setting-error-settings_updated" class="updated settings-error notice is-dismissible">';
 			$HTMLNotice = '<p><strong>Settings saved.</strong></p>';
 			$HTMLNotice = '<button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>';
 			echo $HTMLNotice;
 		}
 
+		/**
+		 * Page settings template HTML and Form
+		 */
 		$HTMLTemplate = "";
 		$HTMLTemplate .= '<div class="oneviewer-container">';
 		$HTMLTemplate .= '<h2>OneViewer Settings</h2>';

@@ -7,6 +7,7 @@
  * @package    OneViewer
  * @author     Soufiane <tr4him@gmail.com>
  */
+if(!defined('ABSPATH')) {die('You are not allowed to call this page directly.');}
 
 class OneViewerEndPoint {
     
