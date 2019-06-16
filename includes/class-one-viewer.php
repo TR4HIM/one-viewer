@@ -62,11 +62,29 @@ class OneViewerCore {
         add_action( 'wp_enqueue_scripts',array( $this, 'enqueue_scripts') );
 	}
 
+	private function define_admin_hooks() {
+
+		add_action('admin_menu', array( $this, 'one_viewer_register_menu_settings'));
+		
+	}
+
+	public function one_viewer_register_menu_settings(){
+   		add_options_page('One Viewer', 'One Viewer', 'manage_options','one-viewer-settings',array( $this, 'one_viewer_admin_template' ));
+	}
+
+ 
+
+	public function one_viewer_admin_template(){
+		echo "Test Template"; ?>
+	
+	<?php
+	}
 	/**
-	 * Run execute all hooks
+	 * Execute all hooks
 	 */
 	
 	public function init() {
 		$this->define_front_hooks();
+		$this->define_admin_hooks();
 	}
 }

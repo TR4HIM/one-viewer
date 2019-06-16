@@ -22,7 +22,7 @@ define( 'ONEVIEW_PLUGIN', __FILE__ );
  * This action is documented in includes/class-viewer-per-category-activator.php
  */
 function activate_one_viewer() {
-
+    add_option('oneview_categories',1);
 }
 
 /**
