@@ -139,13 +139,13 @@ class OneViewerEndPoint {
         $defaultArgs = array(
             'posts_per_page' => 1,
             'category__and'  => array($categoriesIds),
-            // 'category__and'  => $postCategories,
-            'order'          => 'ASC',
         );
 
         //Next post arguments 
         $nextPostArgs = array(
             'date_query'     => array( 'after' => $postObject->post_date ),
+            'order'          => 'ASC',
+
         );
 
         //Merge default arguments and Next post arguments to get the next post in the same category as the current post
@@ -159,6 +159,8 @@ class OneViewerEndPoint {
         //Previous post arguments 
         $prevPostArgs = array(
             'date_query'     => array( 'before' => $postObject->post_date ),
+            'order'          => 'DESC',
+
         );
 
         //Merge default arguments and Previous post arguments to get the previous post in the same category as the current post.
