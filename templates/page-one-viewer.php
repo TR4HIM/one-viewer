@@ -16,17 +16,27 @@
                 <div class="card mb-3 oneviewer-post-card" v-touch:swipe="swipeHandler()">
                     <div class="loader" v-if="isLoading">Loading...</div>
                     <!-- Show image if thumbnail exist -->
-                    <div    class="post-img" 
-                            v-if="results.thumbnail" 
-                            v-bind:style="{ backgroundImage: 'url(' + results.thumbnail + ')' }">
-                    </div>
+                    <transition name="fade" >
+                        <div class="image-animation" v-if="!isLoading">
+                            <div    class="post-img" 
+                                    v-if="results.thumbnail" 
+                                    v-bind:style="{ backgroundImage: 'url(' + results.thumbnail + ')' }">
+                            </div>
+                        </div>
+                    </transition>
                     <div class="card-body" >
                         <h1 class="card-title" v-if="results.post_title">
-                            <strong>
-                                {{ results.post_title }}
-                            </strong>
+                            <transition name="fade" >
+                                <strong v-if="!isLoading">
+                                    {{ results.post_title }}
+                                </strong>
+                            </transition>
                         </h1>
-                        <div class="card-text" v-if="results.post_content" v-html="results.post_content"></div>
+                        <transition name="fade" >
+                            <div class="one-viewer-content" v-if="!isLoading">
+                                <div class="card-text" v-if="results.post_content" v-html="results.post_content"></div>
+                            </div>
+                        </transition>
                     </div>
                 </div>
 
