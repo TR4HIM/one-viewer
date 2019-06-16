@@ -23,10 +23,20 @@ define( 'ONEVIEW_PLUGIN', dirname( __FILE__ ) );
  * This action is documented in includes/class-viewer-per-category-activator.php
  */
 function activate_one_viewer() {
+
+    /**
+     *  Add option field to save selected categories
+     */
     add_option('oneviewer_categories',1);
-
+    
+    /**
+     * Check if /viewer page already exist
+     * 
+     */
     $checkViewerPage = get_page_by_path('viewer');
-
+    /**
+     *  Create page viewer if it's not exist
+     */
     if(empty($checkViewerPage)){
         $post_data = array(
             'post_title'    => wp_strip_all_tags( "Viewer" ),
