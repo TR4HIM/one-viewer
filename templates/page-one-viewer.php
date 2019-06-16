@@ -9,7 +9,7 @@
 <div class='viewer-container' id='one-viewer-app' 
         data-api-endpoint   ="<?= $REST_API_ENDPOINT; ?>" 
         data-app-categories ="<?= get_option( 'oneviewer_categories' ); ?>"
-        :data-page="15" >
+         >
     <div class="container">
         <div class = "row justify-content-md-center">
             <div class="col-md-8">

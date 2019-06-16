@@ -39,11 +39,12 @@ class OneViewerEndPoint {
              * @Params : ID : Post id
              * -Examples : http://URL/wp-json/wp/v2/getpostbyid/180
              */
-            register_rest_route( 'wp/v2', '/getpostbyid/(?P<id>\d+)', array(
+            register_rest_route( 'wp/v2', '/getpostbyid/(?P<id>\d+)/category/(?P<category>\S+)', array(
                 'methods'   => WP_REST_Server::READABLE,
                 'callback'  => __CLASS__ .'::getPostById',
                 'args' => [
-                    'id'
+                    'id',
+                    'category'
                 ]
             ));
         });
@@ -115,6 +116,11 @@ class OneViewerEndPoint {
 
     public function getPostById(WP_REST_Request $request){
 
+        // Get Categories
+
+        $categoriesIds = $request['category'];
+
+        // die($categoriesIds);
         //Get post by ID
         $postObject       = get_post( $request['id'] ); 
 
@@ -132,7 +138,8 @@ class OneViewerEndPoint {
         //Default arguments for next/previous posts.
         $defaultArgs = array(
             'posts_per_page' => 1,
-            'category__and'  => $postCategories,
+            'category__and'  => array($categoriesIds),
+            // 'category__and'  => $postCategories,
             'order'          => 'ASC',
         );
 

@@ -36,7 +36,7 @@
             //Get post by id with on click (next/previous buttons)
             showPost: function (id) {
                 // OneViewer API to get the latest post by id
-                let PostByIdUrl = `${API_ENDPOINT}getpostbyid/${id}`;
+                let PostByIdUrl = `${API_ENDPOINT}getpostbyid/${id}/category/${this.selectedCategories}`;
 
                 axios.get(PostByIdUrl).then(response => {
                     this.results        = response.data;
