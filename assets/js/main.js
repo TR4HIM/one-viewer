@@ -19,16 +19,28 @@
             disableNavigation   : false,
             lockClick           : false,
             isLoading           : true,
+            isMobile            : false,
         },
         
         // Application Methods
         methods: {
-
+            // Check if mobile device
+            checkIsMobile : function(){
+                if (navigator.userAgent.match(/Android/i)
+                    || navigator.userAgent.match(/webOS/i)
+                    || navigator.userAgent.match(/iPhone/i)
+                    || navigator.userAgent.match(/iPad/i)
+                    || navigator.userAgent.match(/iPod/i)
+                    || navigator.userAgent.match(/BlackBerry/i)
+                    || navigator.userAgent.match(/Windows Phone/i)){
+                        this.isMobile =true;
+                    }
+            },
             // Request to get last post by categories
             getLatestPost : function () {
                 // Show loading 
                 this.isLoading = true;
-                
+
                 // OneViewer API to get the latest post by category
                 let showLatestPostUrl = `${API_ENDPOINT}category/${this.selectedCategories}/latest`;
 
@@ -87,9 +99,14 @@
             //Function to handle swipe on touch devices
             swipeHandler() {
                 let _self = this;
+                //Disable touch on desktop devices
 
+                
                 return function (direction, event) {
-
+                    
+                    if (_self.isMobile == false)
+                        return;
+                        
                     if (direction == 'left') {
                         console.log('Previous Swipe');
                         if (_self.previousPost != null)
@@ -115,7 +132,10 @@
                 _self.keyNavigation(ev);
             });
 
+            this.checkIsMobile();
             this.getLatestPost();
+
+            console.log(this.isMobile);
         }
     });
 })();

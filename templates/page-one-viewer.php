@@ -12,8 +12,7 @@
          >
     <div class="container">
         <div class = "row justify-content-md-center">
-            <div class="col-md-8">
-
+            <div class="col-md-10">
                 <div class="card mb-3 oneviewer-post-card" v-touch:swipe="swipeHandler()">
                     <div class="loader" v-if="isLoading">Loading...</div>
                     <!-- Show image if thumbnail exist -->
