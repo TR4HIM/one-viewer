@@ -18,6 +18,7 @@
             selectedCategories  : DEFAULT_CATEGORIES,
             disableNavigation   : false,
             lockClick           : false,
+            isLoading           : true,
         },
         
         // Application Methods
@@ -25,21 +26,26 @@
 
             // Request to get last post by categories
             getLatestPost : function () {
+                // Show loading 
+                this.isLoading = true;
+                
                 // OneViewer API to get the latest post by category
                 let showLatestPostUrl = `${API_ENDPOINT}category/${this.selectedCategories}/latest`;
 
                 axios.get(showLatestPostUrl).then(response => {
-                    this.results        = response.data;
-                    this.nextPost       = response.data.nextPostId;
-                    this.previousPost   = response.data.prevPostId;
+                    this.results            = response.data;
+                    this.nextPost           = response.data.nextPostId;
+                    this.previousPost       = response.data.prevPostId;
                     // If it a single post hide navigation
-                    this.disableNavigation = (this.nextPost == null & this.previousPost == null) ? true : false;
+                    this.disableNavigation  = (this.nextPost == null & this.previousPost == null) ? true : false;
+                    this.isLoading          = false;
                 });
             },
 
             //Get post by id with on click (next/previous buttons)
             showPost: function (id) {
-
+                // Show loading 
+                this.isLoading = true;
                 // Check if a request already on proccess
                 if (this.lockClick)
                     return;
@@ -54,6 +60,7 @@
                     this.nextPost       = response.data.nextPostId;
                     this.previousPost   = response.data.prevPostId;
                     this.lockClick      = false;
+                    this.isLoading      = false;
                 })
             },
 

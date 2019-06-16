@@ -14,18 +14,19 @@
         <div class = "row justify-content-md-center">
             <div class="col-md-8">
 
-                <div class="card mb-3" v-touch:swipe="swipeHandler()">
+                <div class="card mb-3 oneviewer-post-card" v-touch:swipe="swipeHandler()">
+                    <div class="loader" v-if="isLoading">Loading...</div>
                     <!-- Show image if thumbnail exist -->
                     <div    class="post-img" 
                             v-if="results.thumbnail" 
                             v-bind:style="{ backgroundImage: 'url(' + results.thumbnail + ')' }">
                     </div>
                     <div class="card-body" >
-                        <h2 class="card-title" v-if="results.post_title">
+                        <h1 class="card-title" v-if="results.post_title">
                             <strong>
                                 {{ results.post_title }}
                             </strong>
-                        </h2>
+                        </h1>
                         <div class="card-text" v-if="results.post_content" v-html="results.post_content"></div>
                     </div>
                 </div>
