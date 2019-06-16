@@ -63,21 +63,65 @@ class OneViewerCore {
 	}
 
 	private function define_admin_hooks() {
-
+		add_action('admin_init', array( $this, 'sampleoptions_init_fn') );
 		add_action('admin_menu', array( $this, 'one_viewer_register_menu_settings'));
 		
 	}
 
-	public function one_viewer_register_menu_settings(){
-   		add_options_page('One Viewer', 'One Viewer', 'manage_options','one-viewer-settings',array( $this, 'one_viewer_admin_template' ));
+	// Register our settings. Add the settings section, and settings fields
+	public function sampleoptions_init_fn(){
+		
 	}
 
- 
+	public function one_viewer_register_menu_settings(){
+		   add_options_page('One Viewer', 'One Viewer', 'manage_options','one-viewer-settings',array( $this, 'one_viewer_admin_template' ));
+	}
 
+	public function AllCategoriesTemplate(){
+
+		$categories = get_categories();
+		$selectHtml = '<select name="wp-newiewer-select">';
+        foreach ($categories as $category) {
+			if($category->cat_ID == get_option( 'oneviewer_categories' )){
+				$selectHtml .= '<option value="'.$category->cat_ID.'" selected>';
+			}else{
+				$selectHtml .= '<option value="'.$category->cat_ID.'">';
+			}
+            $selectHtml .= $category->cat_name;
+            $selectHtml .= '</option>';
+		}
+		$selectHtml .= '</select>';
+
+		return $selectHtml;
+
+	}
 	public function one_viewer_admin_template(){
-		echo "Test Template"; ?>
+		if ( !empty($_POST)){
+			$categories = $_POST['wp-newiewer-select'];
+			update_option( 'oneviewer_categories', $categories);
+			$HTMLNotice = '<div id="setting-error-settings_updated" class="updated settings-error notice is-dismissible">';
+			$HTMLNotice = '<p><strong>Settings saved.</strong></p>';
+			$HTMLNotice = '<button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>';
+			
+			echo $HTMLNotice;
+			
+		}
+
+		$HTMLTemplate = "";
+		$HTMLTemplate .= '<div class="oneviewer-container">';
+		$HTMLTemplate .= '<h2>OneViewer Settings</h2>';
+		$HTMLTemplate .= '<p>Please choose categories to show on viewer.</p>';
+		$HTMLTemplate .= '<form action="'.$_SERVER['REQUEST_URI'].'" method="post">';
+		$HTMLTemplate .= '<p>';
+		$HTMLTemplate .= $this->AllCategoriesTemplate();;
+		$HTMLTemplate .= '</p>';
+		$HTMLTemplate .= '<p><input name="Submit" type="submit" class="button-primary" value="Save Changes" /></p>';
+		$HTMLTemplate .= '</form>';
+		$HTMLTemplate .= '</div>';
+		
+
+		echo $HTMLTemplate;
 	
-	<?php
 	}
 	/**
 	 * Execute all hooks

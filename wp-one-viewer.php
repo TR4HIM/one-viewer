@@ -14,15 +14,16 @@
 
 define( 'ONEVIEW_VERSION', '1.0.0' );
 define( 'ONEVIEW_REQUIRED_WP_VERSION', '4.9' );
-define( 'ONEVIEW_PLUGIN', __FILE__ );
+define( 'ONEVIEW_PLUGIN', dirname( __FILE__ ) );
 
+ 
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-viewer-per-category-activator.php
  */
 function activate_one_viewer() {
-    add_option('oneview_categories',1);
+    add_option('oneviewer_categories',1);
 }
 
 /**
