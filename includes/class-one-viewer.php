@@ -85,9 +85,13 @@ class OneViewerCore {
 	public function AllCategoriesTemplate(){
 
 		$categories = get_categories();
-		$selectHtml = '<select name="wp-newiewer-select">';
+		$selectedCategories = get_option( 'oneviewer_categories' );
+		$selectedCategoriesToArray = explode(',',$selectedCategories);
+
+
+		$selectHtml = '<select name="wp-newiewer-select[]" multiple="multiple">';
         foreach ($categories as $category) {
-			if($category->cat_ID == get_option( 'oneviewer_categories' )){
+			if(in_array($category->cat_ID, $selectedCategoriesToArray) ){
 				$selectHtml .= '<option value="'.$category->cat_ID.'" selected>';
 			}else{
 				$selectHtml .= '<option value="'.$category->cat_ID.'">';
@@ -112,9 +116,11 @@ class OneViewerCore {
 
 			//Get selected categories.
 			$categories = $_POST['wp-newiewer-select'];
-
+			$categoriesToString = trim(implode(',',$categories));
+			update_option( 'oneviewer_categories', $categoriesToString);
+			// var_dump($categoriesToString);
+			// die('here');
 			//Updated option field and save new categories.
-			update_option( 'oneviewer_categories', $categories);
 
 			//Create Message tempalte
 			$HTMLNotice = '<div id="setting-error-settings_updated" class="updated settings-error notice is-dismissible">';
