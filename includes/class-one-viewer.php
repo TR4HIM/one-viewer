@@ -102,9 +102,7 @@ class OneViewerCore {
 			$HTMLNotice = '<div id="setting-error-settings_updated" class="updated settings-error notice is-dismissible">';
 			$HTMLNotice = '<p><strong>Settings saved.</strong></p>';
 			$HTMLNotice = '<button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>';
-			
 			echo $HTMLNotice;
-			
 		}
 
 		$HTMLTemplate = "";

@@ -10,3 +10,7 @@
 .card-body ul , .card-body ol {
     list-style-position: inside;
 }
+.card-body button {
+    outline: none !important;
+}
+

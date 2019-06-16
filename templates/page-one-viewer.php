@@ -6,7 +6,10 @@
     //Get default Wordpress Api Url
     $REST_API_ENDPOINT = rest_url("wp/v2/");
 ?>
-<div class='viewer-container' id='one-viewer-app' data-api-endpoint="<?= $REST_API_ENDPOINT; ?>" data-app-categories="1">
+<div class='viewer-container' id='one-viewer-app' 
+        data-api-endpoint   ="<?= $REST_API_ENDPOINT; ?>" 
+        data-app-categories ="<?= get_option( 'oneviewer_categories' ); ?>"
+        :data-page="15" >
     <div class="container">
         <div class = "row justify-content-md-center">
             <div class="col-md-8">

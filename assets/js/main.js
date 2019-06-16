@@ -1,7 +1,8 @@
 (function () {
 
     //Get and Save API ENDPOINT for Axios requests
-    const API_ENDPOINT = jQuery('#one-viewer-app').data('api-endpoint');
+    const API_ENDPOINT          = jQuery('#one-viewer-app').data('api-endpoint');
+    const DEFAULT_CATEGORIES    = jQuery('#one-viewer-app').data('app-categories');
 
     //OneViewer VueJs Init
     var app = new Vue({
@@ -11,9 +12,10 @@
 
         // Application Data
         data: {
-            results         : [],
-            nextPost        : null,
-            previousPost    : null
+            results             : [],
+            nextPost            : null,
+            previousPost        : null,
+            selectedCategories  : DEFAULT_CATEGORIES
         },
         
         // Application Methods
@@ -22,7 +24,7 @@
             // Request to get last post by categories
             getLatestPost : function () {
                 // OneViewer API to get the latest post by category
-                let showLatestPostUrl = `${API_ENDPOINT}category/1/latest`;
+                let showLatestPostUrl = `${API_ENDPOINT}category/${this.selectedCategories}/latest`;
 
                 axios.get(showLatestPostUrl).then(response => {
                     this.results        = response.data;
@@ -53,7 +55,7 @@
                     if (this.previousPost != null)
                         this.showPost(this.previousPost);
                 }
-                
+
                 //check if Keycode is for K
                 if (event.keyCode == 75) {
                     console.log('Next');
@@ -71,6 +73,7 @@
                 _self.keyNavigation(ev);
             });
 
+            console.log(this.selectedCategories);
             this.getLatestPost();
         }
     });
