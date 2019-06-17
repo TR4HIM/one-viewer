@@ -42,9 +42,11 @@
                                     </strong>
                                 </transition>
                             </h1>
-                            <div class="onev-post-date mb-4">
-                                <span>{{ results.post_date }}</span>
-                            </div>
+                            <transition name="fade" >
+                                <div class="onev-post-date mb-4" v-if="!isLoading">
+                                    <span>{{ results.post_date }}</span>
+                                </div>
+                            </transition>
                             <transition name="fade" >
                                 <div class="one-viewer-content" v-if="!isLoading">
                                     <div class="card-text" v-if="results.post_content" v-html="results.post_content"></div>
@@ -55,24 +57,26 @@
                 </div>
 
                 <div class="card mb-3 onev-card onev-buttons" v-if="!disableNavigation">
-                    <div class="card-body onev-card-body">
-                        <div class="row">
-                            <div class="col-md-6 onev-btn-left">
-                                <button type="button" class="btn btn-info" 
-                                    v-if="results.prevPostId !== null"
-                                    @click="showPost(results.prevPostId)">
-                                    <?= __('Previous') ?>
-                                </button>
-                            </div>
-                            <div class="col-md-6 onev-btn-right">
-                                <button type="button" class="btn btn-primary" 
-                                    v-if="results.nextPostId !== null"
-                                    @click="showPost(results.nextPostId)">
-                                    <?= __('Next') ?>
-                                </button>
+                    <transition name="fade" >
+                        <div class="card-body onev-card-body" v-if="!isLoading">
+                            <div class="row">
+                                <div class="col-md-6 onev-btn-left">
+                                    <button type="button" class="btn btn-info" 
+                                        v-if="results.prevPostId !== null"
+                                        @click="showPost(results.prevPostId)">
+                                        <?= __('Previous') ?>
+                                    </button>
+                                </div>
+                                <div class="col-md-6 onev-btn-right">
+                                    <button type="button" class="btn btn-primary" 
+                                        v-if="results.nextPostId !== null"
+                                        @click="showPost(results.nextPostId)">
+                                        <?= __('Next') ?>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </transition>
                 </div>
                 
             </div>
