@@ -12,15 +12,29 @@
     list-style-position: inside;
 }
 
-.card-body button.btn  {
-    outline: none !important;
-    box-shadow: none !important;
+
+.oneviewer-buttons button.btn {
+  outline: none !important;
+  box-shadow: none !important;
 }
+
+.oneviewer-buttons button.btn {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.oneviewer-buttons .onev-btn-right {
+  text-align: right;
+}
+
+
 
 .oneviewer-post-card {
     min-height:700px;
     position:relative;
 }
+
+
 /* Loading icon */
 
 .loader,
@@ -92,4 +106,23 @@
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+
+/* Mobile styles */
+
+@media (max-width:760px){
+  .onev-page-title {
+      font-size: 2.5rem;
+  }
+  .oneviewer-buttons button.btn {
+    width:100%;
+  }
+  .oneviewer-buttons .onev-btn-left {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .oneviewer-buttons .onev-btn-right {
+    text-align: center;
+  }
 }

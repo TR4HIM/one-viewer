@@ -13,7 +13,7 @@
     <div class="container">
         <div class = "row justify-content-md-center">
             <div class="col-md-10">
-                <h3 class="display-4">
+                <h3 class="display-4 onev-page-title">
                     Latest posts 
                 </h3>
                 <div class="card mb-3 " v-touch:swipe="swipeHandler()">
@@ -49,17 +49,17 @@
                     </div>
                 </div>
 
-                <div class="card mb-3" v-if="!disableNavigation">
+                <div class="card mb-3 oneviewer-buttons" v-if="!disableNavigation">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col">
+                            <div class="col-md-6 onev-btn-left">
                                 <button type="button" class="btn btn-info" 
                                     v-if="results.prevPostId !== null"
                                     @click="showPost(results.prevPostId)">
                                     <?= __('Previous') ?>
                                 </button>
                             </div>
-                            <div class="col text-right">
+                            <div class="col-md-6 onev-btn-right">
                                 <button type="button" class="btn btn-primary" 
                                     v-if="results.nextPostId !== null"
                                     @click="showPost(results.nextPostId)">
