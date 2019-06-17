@@ -83,14 +83,12 @@
                 
                 //check if Keycode is for J
                 if (event.keyCode == 74) {
-                    console.log('Previous');
                     if (this.previousPost != null)
                         this.showPost(this.previousPost);
                 }
 
                 //check if Keycode is for K
                 if (event.keyCode == 75) {
-                    console.log('Next');
                     if (this.nextPost != null)
                         this.showPost(this.nextPost);
                 }
@@ -106,15 +104,13 @@
                     
                     if (_self.isMobile == false)
                         return;
-                        
+
                     if (direction == 'left') {
-                        console.log('Previous Swipe');
                         if (_self.previousPost != null)
                             _self.showPost(_self.previousPost);
                     }
 
                     if (direction == 'right') {
-                        console.log('Next Swipe');
                         if (_self.nextPost != null)
                             _self.showPost(_self.nextPost);
                     }
@@ -135,7 +131,6 @@
             this.checkIsMobile();
             this.getLatestPost();
 
-            console.log(this.isMobile);
         }
     });
 })();

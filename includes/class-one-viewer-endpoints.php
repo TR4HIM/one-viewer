@@ -42,7 +42,7 @@ class OneViewerEndPoint {
              */
             register_rest_route( 'wp/v2', '/getpostbyid/(?P<id>\d+)/category/(?P<category>\S+)', array(
                 'methods'   => WP_REST_Server::READABLE,
-                'callback'  => __CLASS__ .'::getPostById',
+                'callback'  => array($this, 'getPostById'),
                 'args' => [
                     'id',
                     'category'
