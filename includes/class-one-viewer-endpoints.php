@@ -72,6 +72,11 @@ class OneViewerEndPoint {
 
         // Get the latest post
         $post       = get_posts( $defaultArgs ); 
+        
+        //Check posts exist in that category
+        if(empty($post))
+            return new WP_REST_Response([]);
+
         $latestPost = $post[0];
         wp_reset_postdata();
         

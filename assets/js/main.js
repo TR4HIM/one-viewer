@@ -12,6 +12,7 @@
 
         // Application Data
         data: {
+            postsNotFound       : false,
             results             : [],
             nextPost            : null,
             previousPost        : null,
@@ -45,10 +46,11 @@
                 let showLatestPostUrl = `${API_ENDPOINT}category/${this.selectedCategories}/latest`;
 
                 axios.get(showLatestPostUrl).then(response => {
+                    this.postsNotFound      = (response.data.length == 0) ? true : false;
                     this.results            = response.data;
                     this.nextPost           = response.data.nextPostId;
                     this.previousPost       = response.data.prevPostId;
-                    // If it a single post hide navigation
+                    // If it a single post hide navigation or not found
                     this.disableNavigation  = (this.nextPost == null & this.previousPost == null) ? true : false;
                     this.isLoading          = false;
                 });
