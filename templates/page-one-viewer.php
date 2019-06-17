@@ -11,11 +11,17 @@
         data-app-categories ="<?= get_option( 'oneviewer_categories' ); ?>"
          >
     <div class="container">
-        <div class = "row justify-content-md-center">
-            <div class="col-md-10">
+        <div class = "row justify-content-md-center" >
+            <div class="col-md-10" v-if="errorFound">
+                <div class="alert alert-danger" role="alert">
+                    <?= __('Unexpected error please try again') ?>
+                </div>
+            </div>
+            <div class="col-md-10" v-if="!errorFound">
                 <h3 class="display-4 onev-page-title">
                     Latest posts 
                 </h3>
+
                 <div class="card mb-3 " v-touch:swipe="swipeHandler()">
                     <div class="card-body text-center" v-if="postsNotFound">
                         <p class="lead">

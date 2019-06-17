@@ -21,6 +21,7 @@
             lockClick           : false,
             isLoading           : true,
             isMobile            : false,
+            errorFound          : false,
         },
         
         // Application Methods
@@ -53,6 +54,9 @@
                     // If it a single post hide navigation or not found
                     this.disableNavigation  = (this.nextPost == null & this.previousPost == null) ? true : false;
                     this.isLoading          = false;
+                }).catch(error => {
+                    this.isLoading = false;
+                    this.errorFound = true;
                 });
             },
 
@@ -75,7 +79,10 @@
                     this.previousPost   = response.data.prevPostId;
                     this.lockClick      = false;
                     this.isLoading      = false;
-                })
+                }).catch(error => {
+                    this.isLoading = false;
+                    this.errorFound = true;
+                });
             },
 
             //Next/Previous with keys
