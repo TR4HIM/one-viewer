@@ -79,10 +79,16 @@
                     this.previousPost   = response.data.prevPostId;
                     this.lockClick      = false;
                     this.isLoading      = false;
+                    this.scrollToTop();
                 }).catch(error => {
                     this.isLoading = false;
                     this.errorFound = true;
                 });
+            },
+
+            // Scroll to Top
+            scrollToTop() {
+                window.scrollTo(0, 0);
             },
 
             //Next/Previous with keys
