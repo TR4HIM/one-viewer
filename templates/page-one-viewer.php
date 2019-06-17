@@ -44,7 +44,6 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <!-- ADD TRANSLATE FUNCTION Later-->
                                 <button type="button" class="btn btn-info" 
                                     v-if="results.prevPostId !== null"
                                     @click="showPost(results.prevPostId)">

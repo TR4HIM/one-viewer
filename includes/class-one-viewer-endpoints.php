@@ -28,7 +28,7 @@ class OneViewerEndPoint {
 
             register_rest_route( 'wp/v2', '/category/(?P<category>\S+)/latest', array(
                 'methods'   => WP_REST_Server::READABLE,
-                'callback'  => __CLASS__ .'::getLatesPost',
+                'callback'  => array($this, 'getLatestPost'),
                 'args' => [
                     'category'
                 ]
@@ -53,7 +53,7 @@ class OneViewerEndPoint {
     /**
      * Function to get the latest post by categories
      */
-    public function getLatesPost(WP_REST_Request $request){
+    public function getLatestPost(WP_REST_Request $request){
 
         //Get categories ids from url
         $categoriesIds = $request['category'];
